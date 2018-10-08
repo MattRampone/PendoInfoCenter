@@ -1,9 +1,22 @@
 (function (dom, launcher) {
+    
+    if (pendo._.isUndefined(pendo.pro)) {
+        pendo.pro = {};
+    }
+    pendo.pro.onboardingGuideObject = { 
+        leadmanagementGuides: ['ieYtqpjEHUQ6BB5yvL9hfrPRFRY'], 
+        routeopGuides: ['ieYtqpjEHUQ6BB5yvL9hfrPRFRY'], 
+        dowswsGuides: ['ieYtqpjEHUQ6BB5yvL9hfrPRFRY'], 
+        salesassistantGuides: ['ieYtqpjEHUQ6BB5yvL9hfrPRFRY'], 
+        gpsGuides: ['ieYtqpjEHUQ6BB5yvL9hfrPRFRY'] 
+    }
+    
     var launcherDiv = dom('._pendo-launcher_');
     var displaying = '_pendo-launcher-search--is-displaying_';
     var entering = '_pendo-launcher-view--is-entering_';
     var active = '_pendo-launcher-view--is-active_';
     var exiting = '_pendo-launcher-view--is-exiting_';
+    var openClass = '_pendo-launcher-accordion-open_';
     var progressBar = '_pendo-launcher-onboarding-progress-bar-completed_';
     var progressBarLabel = '_pendo-launcher-onboarding-progress-bar-label_ > span';
     var guideStatus = launcher.guideStatus;
@@ -47,6 +60,35 @@
     launcher.after('updateLauncherContent', backToSearchResults);
 
     launcherDiv
+        .on('click', '._pendo-launcher-accordion_ > button', function (e) {
+            var accordion = dom(eventTarget(e)).closest('._pendo-launcher-accordion_');
+            // Note: if you have nested accordions and resuse the '_pendo-launcher-accordion-open_'
+            // class it will close all open nested accordions as well
+            var openAccordion = dom('._pendo-launcher_ .' + openClass);
+
+            dom('._pendo-launcher_ ._pendo-launcher-guide-listing_').css({ height: 0 });
+
+            if (openAccordion && (openAccordion[0] !== accordion[0])) {
+                openAccordion.toggleClass(openClass);
+            }
+
+            accordion.toggleClass(openClass);
+
+            if (accordion.hasClass(openClass)) {
+                var used = pendo.dom('[data-id="onboarding"] ._pendo-launcher-section-header_').height() +
+                    pendo.dom('[data-id="onboarding"] ._pendo-launcher-section-body_').height();
+                var launcherContent = pendo.dom('[data-id="onboarding"]._pendo-launcher-section-content_');
+                var launcherContentStyle = dom.getComputedStyle(launcherContent[0]);
+                if (launcherContentStyle && launcherContentStyle.borderTopWidth) {
+                    var borderTopWidth = parseInt(launcherContentStyle.borderTopWidth.replace(/\D+/g, ''), 10);
+                    if (!isNaN(borderTopWidth)) {
+                        used += borderTopWidth; // Offset by the content's top border
+                    }
+                }
+                var newHeight = launcherContent.height() - used;
+                accordion.find('._pendo-launcher-guide-listing_').css({ height: newHeight });
+            }
+        })
         .on('click', '._pendo-launcher-menu-item-button_, ._pendo-launcher-section-back-button_', function (e) {
             var target = dom(eventTarget(e)).closest('[data-id]');
             if (target && target.length) {
