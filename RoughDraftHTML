@@ -2,22 +2,16 @@
     Each named variable will contain a comma
     separated list of Guide IDs the visitors
     are eligible for -->
-
-<% var leadmanagementGuides = ['ieYtqpjEHUQ6BB5yvL9hfrPRFRY']; %>
-<% var routeopGuides = ['ieYtqpjEHUQ6BB5yvL9hfrPRFRY']; %>
-<% var dowswsGuides = ['ieYtqpjEHUQ6BB5yvL9hfrPRFRY']; %>
-<% var salesassistantGuides = ['ieYtqpjEHUQ6BB5yvL9hfrPRFRY']; %>
-<% var gpsGuides = ['ieYtqpjEHUQ6BB5yvL9hfrPRFRY']; %>
 <!-- --------------------------------------- -->
 <div class="_pendo-launcher-content_" style="border-color:<%= root.data.color %>">
     <div class="_pendo-launcher-main_">
         <div class="_pendo-launcher-header_">
-            <img src="https://pendo-static-5765935404679168.storage.googleapis.com/infoheader.png">
+            <img src="https://pendo-static-5765935404679168.storage.googleapis.com/ieYtqpjEHUQ6BB5yvL9hfrPRFRY/guide-media-1fd5b0c6-6494-4736-a113-e55b32270468">
             </div>
             <% if (root.data.enableSearch) { %>
                 <form class="_pendo-launcher-search-box_">
                     <label for="_pendo-launcher-search-input_" class="_pendo-launcher-search-icon_"></label>
-                    <input id="_pendo-launcher-search-input_" type="text" placeholder="Search..." autocomplete="off" />
+                    <input id="_pendo-launcher-search-input_" type="text" placeholder="Search Guides..." autocomplete="off" />
                     <button type="button" class="_pendo-launcher-clear-search-icon_"></button>
                 </form>
             <% } %>
@@ -161,7 +155,7 @@
                     </div>
                     <div class="_pendo-launcher-section-body_">
                         <div class="_pendo-launcher-guide-listing_">
-                            <% pendo._.each(root.guides, function(guide) { %>
+                            <% pendo._.each(pendo._.sortBy(root.guides, 'name'), function(guide) { %>
                                 <% if (guide.isHelpGuide()) { %>
                                     <div class="_pendo-launcher-item_" id="launcher-<%= guide.id %>">
                                         <a href="javascript:void(0);">
@@ -201,260 +195,333 @@
                     </div>
                     <div class="_pendo-launcher-section-body_">
                         <% if (root.metadata.account.leadmanagement === 'Y' || root.metadata.account.leadmanagement === 'True') { %>
-                            <h2 class="_pendo-guide-listing-title_">WorkWave Marketing</h2>
-                            <div class="_pendo-launcher-guide-listing_">
-                                <% pendo._.each(root.guides, function(guide) { %>
-                                    <% if (guide.isOnboarding() && pendo._.contains(leadmanagementGuides, guide.id)) { %>
-                                        <div class="_pendo-launcher-item_ _pendo-onboarding-item_ _pendo-onboarding-item-status-<%= root.guideStatus(guide) %>_" id="launcher-<%= guide.id %>">
-                                            <% if (root.guideStatus(guide) === 'not-started') { %>
-                                                <svg class="_pendo-launcher-onboarding-item-status-svg_" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                                                    <circle class="_pendo-launcher-onboarding-item-status-svg-background_" cx="100" cy="100" r="100" transform="translate(10 100)" stroke-width="20" fill="none" stroke-linecap="round" stroke-linejoin="round" />
-                                                </svg>
-                                            <% } %>
-                                            <% if (guide.isMultiStep && root.guideStatus(guide) === 'in-progress') { %>
-                                                <svg class="_pendo-launcher-onboarding-item-status-svg_" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                                                    <g stroke-width="20" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" transform="translate(10 100)">
-                                                        <circle class="_pendo-launcher-onboarding-item-status-svg-background_" cx="100" cy="100" r="100" />
-                                                        <circle class="_pendo-launcher-onboarding-item-status-svg-progress_" transform="rotate(-90 100 100)" stroke-dashoffset="<%= root.guideProgress(guide) %>" cx="100" cy="100" r="100" />
-                                                    </g>
-                                                </svg>
-                                            <% } %>
-                                            <% if (root.guideStatus(guide) === 'complete') { %>
-                                                <svg class="_pendo-launcher-onboarding-item-status-svg_" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="14px" height="14px" viewBox="0 0 14 14" preserveAspectRatio="none">
-                                                    <g>
-                                                        <image width="14" height="14" xlink:href="data:image/png;base64, 
-                                                iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAABGdBTUEAALGPC/xhBQAAAU1JREFU
-                                                KBWdUjFKA1EQnTeblYCI3iCFFmn0AmKjAUFC9AI25gSCpxDBxsYiFjZWFgbsxC6dKGqTIhZ7A8Um
-                                                kF3Hmd39f5Mli+Bv/sybefPfnxnQ1OkNN5e+5PMEoA4JraUh0EiE+stYOes2B98uHc44H25siyRX
-                                                6jccVrojIDg6br49Gp4SjUSUPGhlX6hESl1VIkRBy8jI5b1rpOqlco1IZa+z/ekvEoAnlbmTV2gY
-                                                p0bAPqnGqgPCcx3BwVjiG5djzWOIrE4B6cedr/dLnYOOkq619pbHtePsHTUgdMoEk64OXkMstMeS
-                                                9JSkzZs9LMCHg34It1zjAQOHIYV7E5lcisiui/tbZ8v6vzsPkCzGcXLPAY+UdEEk7SJWWKqg//9x
-                                                2BrZRmTDLarOsyzHco2TNidbo6ClydE8Qo5pLNsa82dWzC25zdaPqWLJfwGs6ohukYlF6wAAAABJ
-                                                RU5ErkJggg==
-                                                " />
-                                                    </g>
-                                                </svg>
-                                            <% } %>
-                                            <a href="javascript:void(0);">
-                                                <%= guide.name %>
-                                            </a>
-                                            <% if (guide.isMultiStep && root.guideStatus(guide) === 'in-progress') { %>
-                                                <div class="_pendo-onboarding-item-progress_">
-                                                    Task in Progress (Step <%= guide.getSeenSteps() %> of <%= guide.getTotalSteps() %>)
+                            <div class="_pendo-launcher-accordion_ _pendo-launcher-help_">
+                                <button>
+                                    WorkWave Marketing
+                                </button>
+                                <div class="_pendo-launcher-guide-listing_">
+                                    <% pendo._.each(root.guides, function(guide) { %>
+                                        <% if (guide.isOnboarding() && pendo._.contains(pendo.pro.onboardingGuideObject.leadmanagementGuides, guide.id)) { %>
+                                            <div class="_pendo-launcher-item_ _pendo-onboarding-item_ _pendo-onboarding-item-status-<%= root.guideStatus(guide) %>_" id="launcher-<%= guide.id %>">
+                                                <% if (root.guideStatus(guide) === 'not-started') { %>
+                                                    <svg class="_pendo-launcher-onboarding-item-status-svg_" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                                                        <circle class="_pendo-launcher-onboarding-item-status-svg-background_" cx="100" cy="100" r="100" transform="translate(10 100)" stroke-width="20" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+                                                    </svg>
+                                                <% } %>
+                                                <% if (guide.isMultiStep && root.guideStatus(guide) === 'in-progress') { %>
+                                                    <svg class="_pendo-launcher-onboarding-item-status-svg_" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                                                        <g stroke-width="20" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" transform="translate(10 100)">
+                                                            <circle class="_pendo-launcher-onboarding-item-status-svg-background_" cx="100" cy="100" r="100" />
+                                                            <circle class="_pendo-launcher-onboarding-item-status-svg-progress_" transform="rotate(-90 100 100)" stroke-dashoffset="<%= root.guideProgress(guide) %>" cx="100" cy="100" r="100" />
+                                                        </g>
+                                                    </svg>
+                                                <% } %>
+                                                <% if (root.guideStatus(guide) === 'complete') { %>
+                                                    <svg class="_pendo-launcher-onboarding-item-status-svg_" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="14px" height="14px" viewBox="0 0 14 14" preserveAspectRatio="none">
+                                                        <g>
+                                                            <image width="14" height="14" xlink:href="data:image/png;base64, 
+                                                    iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAABGdBTUEAALGPC/xhBQAAAU1JREFU
+                                                    KBWdUjFKA1EQnTeblYCI3iCFFmn0AmKjAUFC9AI25gSCpxDBxsYiFjZWFgbsxC6dKGqTIhZ7A8Um
+                                                    kF3Hmd39f5Mli+Bv/sybefPfnxnQ1OkNN5e+5PMEoA4JraUh0EiE+stYOes2B98uHc44H25siyRX
+                                                    6jccVrojIDg6br49Gp4SjUSUPGhlX6hESl1VIkRBy8jI5b1rpOqlco1IZa+z/ekvEoAnlbmTV2gY
+                                                    p0bAPqnGqgPCcx3BwVjiG5djzWOIrE4B6cedr/dLnYOOkq619pbHtePsHTUgdMoEk64OXkMstMeS
+                                                    9JSkzZs9LMCHg34It1zjAQOHIYV7E5lcisiui/tbZ8v6vzsPkCzGcXLPAY+UdEEk7SJWWKqg//9x
+                                                    2BrZRmTDLarOsyzHco2TNidbo6ClydE8Qo5pLNsa82dWzC25zdaPqWLJfwGs6ohukYlF6wAAAABJ
+                                                    RU5ErkJggg==
+                                                    " />
+                                                        </g>
+                                                    </svg>
+                                                <% } %>
+                                                <a href="javascript:void(0);">
+                                                    <%= guide.name %>
+                                                </a>
+                                                <% if (guide.isMultiStep && root.guideStatus(guide) === 'in-progress') { %>
+                                                    <div class="_pendo-onboarding-item-progress_">
+                                                        Task in Progress (Step <%= guide.getSeenSteps() %> of <%= guide.getTotalSteps() %>)
+                                                    </div>
+                                                <% } %>
+                                            </div>
+                                        <% } %>
+                                    <% }) %>
+                                    <div class="_pendo-launcher-section-footer_">
+                                        <div class="_pendo-launcher-onboarding-progress_">
+                                            <div class="_pendo-launcher-onboarding-progress-bar-wrapper_">
+                                                <div class="_pendo-launcher-onboarding-progress-bar-background_">
+                                                    <div class="_pendo-launcher-onboarding-progress-bar-completed_">
+                                                    </div>
                                                 </div>
-                                            <% } %>
+                                            </div>
+                                            <label class="_pendo-launcher-onboarding-progress-bar-label_">
+                                                <span></span>% Complete
+                                            </label>
                                         </div>
-                                    <% } %>
-                                <% }) %>
-                            </div>
-                        <% } %>
-                        <% if (root.metadata.account.routeop === 'Y' || root.metadata.account.routeop === 'True') { %>
-                            <h2 class="_pendo-guide-listing-title_">WorkWave RouteOp</h2>
-                            <div class="_pendo-launcher-guide-listing_">
-                                <% pendo._.each(root.guides, function(guide) { %>
-                                    <% if (guide.isOnboarding() && pendo._.contains(routeopGuides, guide.id)) { %>
-                                        <div class="_pendo-launcher-item_ _pendo-onboarding-item_ _pendo-onboarding-item-status-<%= root.guideStatus(guide) %>_" id="launcher-<%= guide.id %>">
-                                            <% if (root.guideStatus(guide) === 'not-started') { %>
-                                                <svg class="_pendo-launcher-onboarding-item-status-svg_" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                                                    <circle class="_pendo-launcher-onboarding-item-status-svg-background_" cx="100" cy="100" r="100" transform="translate(10 100)" stroke-width="20" fill="none" stroke-linecap="round" stroke-linejoin="round" />
-                                                </svg>
-                                            <% } %>
-                                            <% if (guide.isMultiStep && root.guideStatus(guide) === 'in-progress') { %>
-                                                <svg class="_pendo-launcher-onboarding-item-status-svg_" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                                                    <g stroke-width="20" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" transform="translate(10 100)">
-                                                        <circle class="_pendo-launcher-onboarding-item-status-svg-background_" cx="100" cy="100" r="100" />
-                                                        <circle class="_pendo-launcher-onboarding-item-status-svg-progress_" transform="rotate(-90 100 100)" stroke-dashoffset="<%= root.guideProgress(guide) %>" cx="100" cy="100" r="100" />
-                                                    </g>
-                                                </svg>
-                                            <% } %>
-                                            <% if (root.guideStatus(guide) === 'complete') { %>
-                                                <svg class="_pendo-launcher-onboarding-item-status-svg_" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="14px" height="14px" viewBox="0 0 14 14" preserveAspectRatio="none">
-                                                    <g>
-                                                        <image width="14" height="14" xlink:href="data:image/png;base64, 
-                                                iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAABGdBTUEAALGPC/xhBQAAAU1JREFU
-                                                KBWdUjFKA1EQnTeblYCI3iCFFmn0AmKjAUFC9AI25gSCpxDBxsYiFjZWFgbsxC6dKGqTIhZ7A8Um
-                                                kF3Hmd39f5Mli+Bv/sybefPfnxnQ1OkNN5e+5PMEoA4JraUh0EiE+stYOes2B98uHc44H25siyRX
-                                                6jccVrojIDg6br49Gp4SjUSUPGhlX6hESl1VIkRBy8jI5b1rpOqlco1IZa+z/ekvEoAnlbmTV2gY
-                                                p0bAPqnGqgPCcx3BwVjiG5djzWOIrE4B6cedr/dLnYOOkq619pbHtePsHTUgdMoEk64OXkMstMeS
-                                                9JSkzZs9LMCHg34It1zjAQOHIYV7E5lcisiui/tbZ8v6vzsPkCzGcXLPAY+UdEEk7SJWWKqg//9x
-                                                2BrZRmTDLarOsyzHco2TNidbo6ClydE8Qo5pLNsa82dWzC25zdaPqWLJfwGs6ohukYlF6wAAAABJ
-                                                RU5ErkJggg==
-                                                " />
-                                                    </g>
-                                                </svg>
-                                            <% } %>
-                                            <a href="javascript:void(0);">
-                                                <%= guide.name %>
-                                            </a>
-                                            <% if (guide.isMultiStep && root.guideStatus(guide) === 'in-progress') { %>
-                                                <div class="_pendo-onboarding-item-progress_">
-                                                    Task in Progress (Step <%= guide.getSeenSteps() %> of <%= guide.getTotalSteps() %>)
-                                                </div>
-                                            <% } %>
-                                        </div>
-                                    <% } %>
-                                <% }) %>
-                            </div>
-                        <% } %>
-                        <% if (root.metadata.account.dowsws === 'Y' || root.metadata.account.dowsws === 'True') { %>
-                            <h2 class="_pendo-guide-listing-title_">Dow Sentricon Web Services</h2>
-                            <div class="_pendo-launcher-guide-listing_">
-                                <% pendo._.each(root.guides, function(guide) { %>
-                                    <% if (guide.isOnboarding() && pendo._.contains(dowswsGuides, guide.id)) { %>
-                                        <div class="_pendo-launcher-item_ _pendo-onboarding-item_ _pendo-onboarding-item-status-<%= root.guideStatus(guide) %>_" id="launcher-<%= guide.id %>">
-                                            <% if (root.guideStatus(guide) === 'not-started') { %>
-                                                <svg class="_pendo-launcher-onboarding-item-status-svg_" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                                                    <circle class="_pendo-launcher-onboarding-item-status-svg-background_" cx="100" cy="100" r="100" transform="translate(10 100)" stroke-width="20" fill="none" stroke-linecap="round" stroke-linejoin="round" />
-                                                </svg>
-                                            <% } %>
-                                            <% if (guide.isMultiStep && root.guideStatus(guide) === 'in-progress') { %>
-                                                <svg class="_pendo-launcher-onboarding-item-status-svg_" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                                                    <g stroke-width="20" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" transform="translate(10 100)">
-                                                        <circle class="_pendo-launcher-onboarding-item-status-svg-background_" cx="100" cy="100" r="100" />
-                                                        <circle class="_pendo-launcher-onboarding-item-status-svg-progress_" transform="rotate(-90 100 100)" stroke-dashoffset="<%= root.guideProgress(guide) %>" cx="100" cy="100" r="100" />
-                                                    </g>
-                                                </svg>
-                                            <% } %>
-                                            <% if (root.guideStatus(guide) === 'complete') { %>
-                                                <svg class="_pendo-launcher-onboarding-item-status-svg_" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="14px" height="14px" viewBox="0 0 14 14" preserveAspectRatio="none">
-                                                    <g>
-                                                        <image width="14" height="14" xlink:href="data:image/png;base64, 
-                                                iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAABGdBTUEAALGPC/xhBQAAAU1JREFU
-                                                KBWdUjFKA1EQnTeblYCI3iCFFmn0AmKjAUFC9AI25gSCpxDBxsYiFjZWFgbsxC6dKGqTIhZ7A8Um
-                                                kF3Hmd39f5Mli+Bv/sybefPfnxnQ1OkNN5e+5PMEoA4JraUh0EiE+stYOes2B98uHc44H25siyRX
-                                                6jccVrojIDg6br49Gp4SjUSUPGhlX6hESl1VIkRBy8jI5b1rpOqlco1IZa+z/ekvEoAnlbmTV2gY
-                                                p0bAPqnGqgPCcx3BwVjiG5djzWOIrE4B6cedr/dLnYOOkq619pbHtePsHTUgdMoEk64OXkMstMeS
-                                                9JSkzZs9LMCHg34It1zjAQOHIYV7E5lcisiui/tbZ8v6vzsPkCzGcXLPAY+UdEEk7SJWWKqg//9x
-                                                2BrZRmTDLarOsyzHco2TNidbo6ClydE8Qo5pLNsa82dWzC25zdaPqWLJfwGs6ohukYlF6wAAAABJ
-                                                RU5ErkJggg==
-                                                " />
-                                                    </g>
-                                                </svg>
-                                            <% } %>
-                                            <a href="javascript:void(0);">
-                                                <%= guide.name %>
-                                            </a>
-                                            <% if (guide.isMultiStep && root.guideStatus(guide) === 'in-progress') { %>
-                                                <div class="_pendo-onboarding-item-progress_">
-                                                    Task in Progress (Step <%= guide.getSeenSteps() %> of <%= guide.getTotalSteps() %>)
-                                                </div>
-                                            <% } %>
-                                        </div>
-                                    <% } %>
-                                <% }) %>
-                            </div>
-                        <% } %>
-                        <% if (root.metadata.account.salesassistant === 'Y' || root.metadata.account.salesassistant === 'True') { %>
-                            <h2 class="_pendo-guide-listing-title_">Sales Assistant</h2>
-                            <div class="_pendo-launcher-guide-listing_">
-                                <% pendo._.each(root.guides, function(guide) { %>
-                                    <% if (guide.isOnboarding() && pendo._.contains(salesassistantGuides, guide.id)) { %>
-                                        <div class="_pendo-launcher-item_ _pendo-onboarding-item_ _pendo-onboarding-item-status-<%= root.guideStatus(guide) %>_" id="launcher-<%= guide.id %>">
-                                            <% if (root.guideStatus(guide) === 'not-started') { %>
-                                                <svg class="_pendo-launcher-onboarding-item-status-svg_" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                                                    <circle class="_pendo-launcher-onboarding-item-status-svg-background_" cx="100" cy="100" r="100" transform="translate(10 100)" stroke-width="20" fill="none" stroke-linecap="round" stroke-linejoin="round" />
-                                                </svg>
-                                            <% } %>
-                                            <% if (guide.isMultiStep && root.guideStatus(guide) === 'in-progress') { %>
-                                                <svg class="_pendo-launcher-onboarding-item-status-svg_" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                                                    <g stroke-width="20" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" transform="translate(10 100)">
-                                                        <circle class="_pendo-launcher-onboarding-item-status-svg-background_" cx="100" cy="100" r="100" />
-                                                        <circle class="_pendo-launcher-onboarding-item-status-svg-progress_" transform="rotate(-90 100 100)" stroke-dashoffset="<%= root.guideProgress(guide) %>" cx="100" cy="100" r="100" />
-                                                    </g>
-                                                </svg>
-                                            <% } %>
-                                            <% if (root.guideStatus(guide) === 'complete') { %>
-                                                <svg class="_pendo-launcher-onboarding-item-status-svg_" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="14px" height="14px" viewBox="0 0 14 14" preserveAspectRatio="none">
-                                                    <g>
-                                                        <image width="14" height="14" xlink:href="data:image/png;base64, 
-                                                iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAABGdBTUEAALGPC/xhBQAAAU1JREFU
-                                                KBWdUjFKA1EQnTeblYCI3iCFFmn0AmKjAUFC9AI25gSCpxDBxsYiFjZWFgbsxC6dKGqTIhZ7A8Um
-                                                kF3Hmd39f5Mli+Bv/sybefPfnxnQ1OkNN5e+5PMEoA4JraUh0EiE+stYOes2B98uHc44H25siyRX
-                                                6jccVrojIDg6br49Gp4SjUSUPGhlX6hESl1VIkRBy8jI5b1rpOqlco1IZa+z/ekvEoAnlbmTV2gY
-                                                p0bAPqnGqgPCcx3BwVjiG5djzWOIrE4B6cedr/dLnYOOkq619pbHtePsHTUgdMoEk64OXkMstMeS
-                                                9JSkzZs9LMCHg34It1zjAQOHIYV7E5lcisiui/tbZ8v6vzsPkCzGcXLPAY+UdEEk7SJWWKqg//9x
-                                                2BrZRmTDLarOsyzHco2TNidbo6ClydE8Qo5pLNsa82dWzC25zdaPqWLJfwGs6ohukYlF6wAAAABJ
-                                                RU5ErkJggg==
-                                                " />
-                                                    </g>
-                                                </svg>
-                                            <% } %>
-                                            <a href="javascript:void(0);">
-                                                <%= guide.name %>
-                                            </a>
-                                            <% if (guide.isMultiStep && root.guideStatus(guide) === 'in-progress') { %>
-                                                <div class="_pendo-onboarding-item-progress_">
-                                                    Task in Progress (Step <%= guide.getSeenSteps() %> of <%= guide.getTotalSteps() %>)
-                                                </div>
-                                            <% } %>
-                                        </div>
-                                    <% } %>
-                                <% }) %>
-                            </div>
-                        <% } %>
-                        <% if (root.metadata.account.gps === 'Y' || root.metadata.account.gps === 'True') { %>
-                            <h2 class="_pendo-guide-listing-title_">WorkWave GPS</h2>
-                            <div class="_pendo-launcher-guide-listing_">
-                                <% pendo._.each(root.guides, function(guide) { %>
-                                    <% if (guide.isOnboarding() && pendo._.contains(gpsGuides, guide.id)) { %>
-                                        <div class="_pendo-launcher-item_ _pendo-onboarding-item_ _pendo-onboarding-item-status-<%= root.guideStatus(guide) %>_" id="launcher-<%= guide.id %>">
-                                            <% if (root.guideStatus(guide) === 'not-started') { %>
-                                                <svg class="_pendo-launcher-onboarding-item-status-svg_" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                                                    <circle class="_pendo-launcher-onboarding-item-status-svg-background_" cx="100" cy="100" r="100" transform="translate(10 100)" stroke-width="20" fill="none" stroke-linecap="round" stroke-linejoin="round" />
-                                                </svg>
-                                            <% } %>
-                                            <% if (guide.isMultiStep && root.guideStatus(guide) === 'in-progress') { %>
-                                                <svg class="_pendo-launcher-onboarding-item-status-svg_" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                                                    <g stroke-width="20" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" transform="translate(10 100)">
-                                                        <circle class="_pendo-launcher-onboarding-item-status-svg-background_" cx="100" cy="100" r="100" />
-                                                        <circle class="_pendo-launcher-onboarding-item-status-svg-progress_" transform="rotate(-90 100 100)" stroke-dashoffset="<%= root.guideProgress(guide) %>" cx="100" cy="100" r="100" />
-                                                    </g>
-                                                </svg>
-                                            <% } %>
-                                            <% if (root.guideStatus(guide) === 'complete') { %>
-                                                <svg class="_pendo-launcher-onboarding-item-status-svg_" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="14px" height="14px" viewBox="0 0 14 14" preserveAspectRatio="none">
-                                                    <g>
-                                                        <image width="14" height="14" xlink:href="data:image/png;base64, 
-                                                iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAABGdBTUEAALGPC/xhBQAAAU1JREFU
-                                                KBWdUjFKA1EQnTeblYCI3iCFFmn0AmKjAUFC9AI25gSCpxDBxsYiFjZWFgbsxC6dKGqTIhZ7A8Um
-                                                kF3Hmd39f5Mli+Bv/sybefPfnxnQ1OkNN5e+5PMEoA4JraUh0EiE+stYOes2B98uHc44H25siyRX
-                                                6jccVrojIDg6br49Gp4SjUSUPGhlX6hESl1VIkRBy8jI5b1rpOqlco1IZa+z/ekvEoAnlbmTV2gY
-                                                p0bAPqnGqgPCcx3BwVjiG5djzWOIrE4B6cedr/dLnYOOkq619pbHtePsHTUgdMoEk64OXkMstMeS
-                                                9JSkzZs9LMCHg34It1zjAQOHIYV7E5lcisiui/tbZ8v6vzsPkCzGcXLPAY+UdEEk7SJWWKqg//9x
-                                                2BrZRmTDLarOsyzHco2TNidbo6ClydE8Qo5pLNsa82dWzC25zdaPqWLJfwGs6ohukYlF6wAAAABJ
-                                                RU5ErkJggg==
-                                                " />
-                                                    </g>
-                                                </svg>
-                                            <% } %>
-                                            <a href="javascript:void(0);">
-                                                <%= guide.name %>
-                                            </a>
-                                            <% if (guide.isMultiStep && root.guideStatus(guide) === 'in-progress') { %>
-                                                <div class="_pendo-onboarding-item-progress_">
-                                                    Task in Progress (Step <%= guide.getSeenSteps() %> of <%= guide.getTotalSteps() %>)
-                                                </div>
-                                            <% } %>
-                                        </div>
-                                    <% } %>
-                                <% }) %>
-                            </div>
-                        <% } %>
-                    </div>
-                    <div class="_pendo-launcher-section-footer_">
-                        <div class="_pendo-launcher-onboarding-progress_">
-                            <div class="_pendo-launcher-onboarding-progress-bar-wrapper_">
-                                <div class="_pendo-launcher-onboarding-progress-bar-background_">
-                                    <div class="_pendo-launcher-onboarding-progress-bar-completed_">
                                     </div>
                                 </div>
                             </div>
-                            <label class="_pendo-launcher-onboarding-progress-bar-label_">
-                                <span></span>% Complete
-                            </label>
-                        </div>
+                        <% } %>
+                        <% if (root.metadata.account.routeop === 'Y' || root.metadata.account.routeop === 'True') { %>
+                            <div class="_pendo-launcher-accordion_ _pendo-launcher-help_">
+                                    <button>
+                                        WorkWave RouteOp
+                                    </button>
+                                <div class="_pendo-launcher-guide-listing_">
+                                    <% pendo._.each(root.guides, function(guide) { %>
+                                        <% if (guide.isOnboarding() && pendo._.contains(pendo.pro.onboardingGuideObject.routeopGuides, guide.id)) { %>
+                                            <div class="_pendo-launcher-item_ _pendo-onboarding-item_ _pendo-onboarding-item-status-<%= root.guideStatus(guide) %>_" id="launcher-<%= guide.id %>">
+                                                <% if (root.guideStatus(guide) === 'not-started') { %>
+                                                    <svg class="_pendo-launcher-onboarding-item-status-svg_" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                                                        <circle class="_pendo-launcher-onboarding-item-status-svg-background_" cx="100" cy="100" r="100" transform="translate(10 100)" stroke-width="20" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+                                                    </svg>
+                                                <% } %>
+                                                <% if (guide.isMultiStep && root.guideStatus(guide) === 'in-progress') { %>
+                                                    <svg class="_pendo-launcher-onboarding-item-status-svg_" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                                                        <g stroke-width="20" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" transform="translate(10 100)">
+                                                            <circle class="_pendo-launcher-onboarding-item-status-svg-background_" cx="100" cy="100" r="100" />
+                                                            <circle class="_pendo-launcher-onboarding-item-status-svg-progress_" transform="rotate(-90 100 100)" stroke-dashoffset="<%= root.guideProgress(guide) %>" cx="100" cy="100" r="100" />
+                                                        </g>
+                                                    </svg>
+                                                <% } %>
+                                                <% if (root.guideStatus(guide) === 'complete') { %>
+                                                    <svg class="_pendo-launcher-onboarding-item-status-svg_" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="14px" height="14px" viewBox="0 0 14 14" preserveAspectRatio="none">
+                                                        <g>
+                                                            <image width="14" height="14" xlink:href="data:image/png;base64, 
+                                                    iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAABGdBTUEAALGPC/xhBQAAAU1JREFU
+                                                    KBWdUjFKA1EQnTeblYCI3iCFFmn0AmKjAUFC9AI25gSCpxDBxsYiFjZWFgbsxC6dKGqTIhZ7A8Um
+                                                    kF3Hmd39f5Mli+Bv/sybefPfnxnQ1OkNN5e+5PMEoA4JraUh0EiE+stYOes2B98uHc44H25siyRX
+                                                    6jccVrojIDg6br49Gp4SjUSUPGhlX6hESl1VIkRBy8jI5b1rpOqlco1IZa+z/ekvEoAnlbmTV2gY
+                                                    p0bAPqnGqgPCcx3BwVjiG5djzWOIrE4B6cedr/dLnYOOkq619pbHtePsHTUgdMoEk64OXkMstMeS
+                                                    9JSkzZs9LMCHg34It1zjAQOHIYV7E5lcisiui/tbZ8v6vzsPkCzGcXLPAY+UdEEk7SJWWKqg//9x
+                                                    2BrZRmTDLarOsyzHco2TNidbo6ClydE8Qo5pLNsa82dWzC25zdaPqWLJfwGs6ohukYlF6wAAAABJ
+                                                    RU5ErkJggg==
+                                                    " />
+                                                        </g>
+                                                    </svg>
+                                                <% } %>
+                                                <a href="javascript:void(0);">
+                                                    <%= guide.name %>
+                                                </a>
+                                                <% if (guide.isMultiStep && root.guideStatus(guide) === 'in-progress') { %>
+                                                    <div class="_pendo-onboarding-item-progress_">
+                                                        Task in Progress (Step <%= guide.getSeenSteps() %> of <%= guide.getTotalSteps() %>)
+                                                    </div>
+                                                <% } %>
+                                            </div>
+                                        <% } %>
+                                    <% }) %>
+                                    <div class="_pendo-launcher-section-footer_">
+                                        <div class="_pendo-launcher-onboarding-progress_">
+                                            <div class="_pendo-launcher-onboarding-progress-bar-wrapper_">
+                                                <div class="_pendo-launcher-onboarding-progress-bar-background_">
+                                                    <div class="_pendo-launcher-onboarding-progress-bar-completed_">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <label class="_pendo-launcher-onboarding-progress-bar-label_">
+                                                <span></span>% Complete
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %>
+                        <% if (root.metadata.account.dowsws === 'Y' || root.metadata.account.dowsws === 'True') { %>
+                            <div class="_pendo-launcher-accordion_ _pendo-launcher-help_">
+                                    <button>
+                                        Dow Sentricon Web Services
+                                    </button>
+                                <div class="_pendo-launcher-guide-listing_">
+                                    <% pendo._.each(root.guides, function(guide) { %>
+                                        <% if (guide.isOnboarding() && pendo._.contains(pendo.pro.onboardingGuideObject.dowswsGuides, guide.id)) { %>
+                                            <div class="_pendo-launcher-item_ _pendo-onboarding-item_ _pendo-onboarding-item-status-<%= root.guideStatus(guide) %>_" id="launcher-<%= guide.id %>">
+                                                <% if (root.guideStatus(guide) === 'not-started') { %>
+                                                    <svg class="_pendo-launcher-onboarding-item-status-svg_" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                                                        <circle class="_pendo-launcher-onboarding-item-status-svg-background_" cx="100" cy="100" r="100" transform="translate(10 100)" stroke-width="20" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+                                                    </svg>
+                                                <% } %>
+                                                <% if (guide.isMultiStep && root.guideStatus(guide) === 'in-progress') { %>
+                                                    <svg class="_pendo-launcher-onboarding-item-status-svg_" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                                                        <g stroke-width="20" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" transform="translate(10 100)">
+                                                            <circle class="_pendo-launcher-onboarding-item-status-svg-background_" cx="100" cy="100" r="100" />
+                                                            <circle class="_pendo-launcher-onboarding-item-status-svg-progress_" transform="rotate(-90 100 100)" stroke-dashoffset="<%= root.guideProgress(guide) %>" cx="100" cy="100" r="100" />
+                                                        </g>
+                                                    </svg>
+                                                <% } %>
+                                                <% if (root.guideStatus(guide) === 'complete') { %>
+                                                    <svg class="_pendo-launcher-onboarding-item-status-svg_" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="14px" height="14px" viewBox="0 0 14 14" preserveAspectRatio="none">
+                                                        <g>
+                                                            <image width="14" height="14" xlink:href="data:image/png;base64, 
+                                                    iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAABGdBTUEAALGPC/xhBQAAAU1JREFU
+                                                    KBWdUjFKA1EQnTeblYCI3iCFFmn0AmKjAUFC9AI25gSCpxDBxsYiFjZWFgbsxC6dKGqTIhZ7A8Um
+                                                    kF3Hmd39f5Mli+Bv/sybefPfnxnQ1OkNN5e+5PMEoA4JraUh0EiE+stYOes2B98uHc44H25siyRX
+                                                    6jccVrojIDg6br49Gp4SjUSUPGhlX6hESl1VIkRBy8jI5b1rpOqlco1IZa+z/ekvEoAnlbmTV2gY
+                                                    p0bAPqnGqgPCcx3BwVjiG5djzWOIrE4B6cedr/dLnYOOkq619pbHtePsHTUgdMoEk64OXkMstMeS
+                                                    9JSkzZs9LMCHg34It1zjAQOHIYV7E5lcisiui/tbZ8v6vzsPkCzGcXLPAY+UdEEk7SJWWKqg//9x
+                                                    2BrZRmTDLarOsyzHco2TNidbo6ClydE8Qo5pLNsa82dWzC25zdaPqWLJfwGs6ohukYlF6wAAAABJ
+                                                    RU5ErkJggg==
+                                                    " />
+                                                        </g>
+                                                    </svg>
+                                                <% } %>
+                                                <a href="javascript:void(0);">
+                                                    <%= guide.name %>
+                                                </a>
+                                                <% if (guide.isMultiStep && root.guideStatus(guide) === 'in-progress') { %>
+                                                    <div class="_pendo-onboarding-item-progress_">
+                                                        Task in Progress (Step <%= guide.getSeenSteps() %> of <%= guide.getTotalSteps() %>)
+                                                    </div>
+                                                <% } %>
+                                            </div>
+                                        <% } %>
+                                    <% }) %>
+                                    <div class="_pendo-launcher-section-footer_">
+                                        <div class="_pendo-launcher-onboarding-progress_">
+                                            <div class="_pendo-launcher-onboarding-progress-bar-wrapper_">
+                                                <div class="_pendo-launcher-onboarding-progress-bar-background_">
+                                                    <div class="_pendo-launcher-onboarding-progress-bar-completed_">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <label class="_pendo-launcher-onboarding-progress-bar-label_">
+                                                <span></span>% Complete
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %>
+                        <% if (root.metadata.account.salesassistant === 'Y' || root.metadata.account.salesassistant === 'True') { %>
+                            <div class="_pendo-launcher-accordion_ _pendo-launcher-help_">
+                                    <button>
+                                        Sales Assistant
+                                    </button>
+                                <div class="_pendo-launcher-guide-listing_">
+                                    <% pendo._.each(root.guides, function(guide) { %>
+                                        <% if (guide.isOnboarding() && pendo._.contains(pendo.pro.onboardingGuideObject.salesassistantGuides, guide.id)) { %>
+                                            <div class="_pendo-launcher-item_ _pendo-onboarding-item_ _pendo-onboarding-item-status-<%= root.guideStatus(guide) %>_" id="launcher-<%= guide.id %>">
+                                                <% if (root.guideStatus(guide) === 'not-started') { %>
+                                                    <svg class="_pendo-launcher-onboarding-item-status-svg_" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                                                        <circle class="_pendo-launcher-onboarding-item-status-svg-background_" cx="100" cy="100" r="100" transform="translate(10 100)" stroke-width="20" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+                                                    </svg>
+                                                <% } %>
+                                                <% if (guide.isMultiStep && root.guideStatus(guide) === 'in-progress') { %>
+                                                    <svg class="_pendo-launcher-onboarding-item-status-svg_" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                                                        <g stroke-width="20" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" transform="translate(10 100)">
+                                                            <circle class="_pendo-launcher-onboarding-item-status-svg-background_" cx="100" cy="100" r="100" />
+                                                            <circle class="_pendo-launcher-onboarding-item-status-svg-progress_" transform="rotate(-90 100 100)" stroke-dashoffset="<%= root.guideProgress(guide) %>" cx="100" cy="100" r="100" />
+                                                        </g>
+                                                    </svg>
+                                                <% } %>
+                                                <% if (root.guideStatus(guide) === 'complete') { %>
+                                                    <svg class="_pendo-launcher-onboarding-item-status-svg_" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="14px" height="14px" viewBox="0 0 14 14" preserveAspectRatio="none">
+                                                        <g>
+                                                            <image width="14" height="14" xlink:href="data:image/png;base64, 
+                                                    iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAABGdBTUEAALGPC/xhBQAAAU1JREFU
+                                                    KBWdUjFKA1EQnTeblYCI3iCFFmn0AmKjAUFC9AI25gSCpxDBxsYiFjZWFgbsxC6dKGqTIhZ7A8Um
+                                                    kF3Hmd39f5Mli+Bv/sybefPfnxnQ1OkNN5e+5PMEoA4JraUh0EiE+stYOes2B98uHc44H25siyRX
+                                                    6jccVrojIDg6br49Gp4SjUSUPGhlX6hESl1VIkRBy8jI5b1rpOqlco1IZa+z/ekvEoAnlbmTV2gY
+                                                    p0bAPqnGqgPCcx3BwVjiG5djzWOIrE4B6cedr/dLnYOOkq619pbHtePsHTUgdMoEk64OXkMstMeS
+                                                    9JSkzZs9LMCHg34It1zjAQOHIYV7E5lcisiui/tbZ8v6vzsPkCzGcXLPAY+UdEEk7SJWWKqg//9x
+                                                    2BrZRmTDLarOsyzHco2TNidbo6ClydE8Qo5pLNsa82dWzC25zdaPqWLJfwGs6ohukYlF6wAAAABJ
+                                                    RU5ErkJggg==
+                                                    " />
+                                                        </g>
+                                                    </svg>
+                                                <% } %>
+                                                <a href="javascript:void(0);">
+                                                    <%= guide.name %>
+                                                </a>
+                                                <% if (guide.isMultiStep && root.guideStatus(guide) === 'in-progress') { %>
+                                                    <div class="_pendo-onboarding-item-progress_">
+                                                        Task in Progress (Step <%= guide.getSeenSteps() %> of <%= guide.getTotalSteps() %>)
+                                                    </div>
+                                                <% } %>
+                                            </div>
+                                        <% } %>
+                                    <% }) %>
+                                    <div class="_pendo-launcher-section-footer_">
+                                        <div class="_pendo-launcher-onboarding-progress_">
+                                            <div class="_pendo-launcher-onboarding-progress-bar-wrapper_">
+                                                <div class="_pendo-launcher-onboarding-progress-bar-background_">
+                                                    <div class="_pendo-launcher-onboarding-progress-bar-completed_">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <label class="_pendo-launcher-onboarding-progress-bar-label_">
+                                                <span></span>% Complete
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %>
+                        <% if (root.metadata.account.gps === 'Y' || root.metadata.account.gps === 'True') { %>
+                            <div class="_pendo-launcher-accordion_ _pendo-launcher-help_">
+                                    <button>
+                                        WorkWave GPS
+                                    </button>
+                                <div class="_pendo-launcher-guide-listing_">
+                                    <% pendo._.each(root.guides, function(guide) { %>
+                                        <% if (guide.isOnboarding() && pendo._.contains(pendo.pro.onboardingGuideObject.gpsGuides, guide.id)) { %>
+                                            <div class="_pendo-launcher-item_ _pendo-onboarding-item_ _pendo-onboarding-item-status-<%= root.guideStatus(guide) %>_" id="launcher-<%= guide.id %>">
+                                                <% if (root.guideStatus(guide) === 'not-started') { %>
+                                                    <svg class="_pendo-launcher-onboarding-item-status-svg_" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                                                        <circle class="_pendo-launcher-onboarding-item-status-svg-background_" cx="100" cy="100" r="100" transform="translate(10 100)" stroke-width="20" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+                                                    </svg>
+                                                <% } %>
+                                                <% if (guide.isMultiStep && root.guideStatus(guide) === 'in-progress') { %>
+                                                    <svg class="_pendo-launcher-onboarding-item-status-svg_" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                                                        <g stroke-width="20" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" transform="translate(10 100)">
+                                                            <circle class="_pendo-launcher-onboarding-item-status-svg-background_" cx="100" cy="100" r="100" />
+                                                            <circle class="_pendo-launcher-onboarding-item-status-svg-progress_" transform="rotate(-90 100 100)" stroke-dashoffset="<%= root.guideProgress(guide) %>" cx="100" cy="100" r="100" />
+                                                        </g>
+                                                    </svg>
+                                                <% } %>
+                                                <% if (root.guideStatus(guide) === 'complete') { %>
+                                                    <svg class="_pendo-launcher-onboarding-item-status-svg_" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="14px" height="14px" viewBox="0 0 14 14" preserveAspectRatio="none">
+                                                        <g>
+                                                            <image width="14" height="14" xlink:href="data:image/png;base64, 
+                                                    iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAABGdBTUEAALGPC/xhBQAAAU1JREFU
+                                                    KBWdUjFKA1EQnTeblYCI3iCFFmn0AmKjAUFC9AI25gSCpxDBxsYiFjZWFgbsxC6dKGqTIhZ7A8Um
+                                                    kF3Hmd39f5Mli+Bv/sybefPfnxnQ1OkNN5e+5PMEoA4JraUh0EiE+stYOes2B98uHc44H25siyRX
+                                                    6jccVrojIDg6br49Gp4SjUSUPGhlX6hESl1VIkRBy8jI5b1rpOqlco1IZa+z/ekvEoAnlbmTV2gY
+                                                    p0bAPqnGqgPCcx3BwVjiG5djzWOIrE4B6cedr/dLnYOOkq619pbHtePsHTUgdMoEk64OXkMstMeS
+                                                    9JSkzZs9LMCHg34It1zjAQOHIYV7E5lcisiui/tbZ8v6vzsPkCzGcXLPAY+UdEEk7SJWWKqg//9x
+                                                    2BrZRmTDLarOsyzHco2TNidbo6ClydE8Qo5pLNsa82dWzC25zdaPqWLJfwGs6ohukYlF6wAAAABJ
+                                                    RU5ErkJggg==
+                                                    " />
+                                                        </g>
+                                                    </svg>
+                                                <% } %>
+                                                <a href="javascript:void(0);">
+                                                    <%= guide.name %>
+                                                </a>
+                                                <% if (guide.isMultiStep && root.guideStatus(guide) === 'in-progress') { %>
+                                                    <div class="_pendo-onboarding-item-progress_">
+                                                        Task in Progress (Step <%= guide.getSeenSteps() %> of <%= guide.getTotalSteps() %>)
+                                                    </div>
+                                                <% } %>
+                                            </div>
+                                        <% } %>
+                                    <% }) %>
+                                    <div class="_pendo-launcher-section-footer_">
+                                        <div class="_pendo-launcher-onboarding-progress_">
+                                            <div class="_pendo-launcher-onboarding-progress-bar-wrapper_">
+                                                <div class="_pendo-launcher-onboarding-progress-bar-background_">
+                                                    <div class="_pendo-launcher-onboarding-progress-bar-completed_">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <label class="_pendo-launcher-onboarding-progress-bar-label_">
+                                                <span></span>% Complete
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %>
                     </div>
                 </div>
             <% } %>
     </div>
 </div>
+    
