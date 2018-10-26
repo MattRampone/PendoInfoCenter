@@ -459,7 +459,7 @@ button {
 ._pendo-close-guide_ {
     color: @pendo-close-guide;
     top: 7px;
-    right: 10px;
+    right: -18px;
     font-size: 24px;
     font-weight: 300;
 }
