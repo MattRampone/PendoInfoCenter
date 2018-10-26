@@ -1,28 +1,47 @@
-(function (dom, launcher) {
-    
+(function (dom, launcher, _) {
     if (pendo._.isUndefined(pendo.pro)) {
         pendo.pro = {};
     }
-    pendo.pro.onboardingGuideObject = { 
-        leadmanagementGuides: ['ieYtqpjEHUQ6BB5yvL9hfrPRFRY'], 
-        routeopGuides: ['ieYtqpjEHUQ6BB5yvL9hfrPRFRY'], 
-        dowswsGuides: ['ieYtqpjEHUQ6BB5yvL9hfrPRFRY'], 
-        salesassistantGuides: ['ieYtqpjEHUQ6BB5yvL9hfrPRFRY'], 
-        gpsGuides: ['ieYtqpjEHUQ6BB5yvL9hfrPRFRY'] 
-    }
-    
+    pendo.pro.onboardingGuides = {
+        leadmanagement: {
+            guides: ['ieYtqpjEHUQ6BB5yvL9hfrPRFRY']
+        },
+        routeop: {
+            guides: ['ZWhFz9bktf7VEhm2K-rlTUVFpTQ']
+        },
+        dowsws: {
+            guides: ['ieYtqpjEHUQ6BB5yvL9hfrPRFRY', 'ZWhFz9bktf7VEhm2K-rlTUVFpTQ']
+        },
+        salesassistant: {
+            guides: ['ieYtqpjEHUQ6BB5yvL9hfrPRFRY']
+        },
+        gps: {
+            guides: ['ieYtqpjEHUQ6BB5yvL9hfrPRFRY']
+        }
+    };
+
+    var moduleAccordions = [
+        'leadmanagement',
+        'routeop',
+        'dowsws',
+        'salesassistant',
+        'gps'
+    ];
+
     var launcherDiv = dom('._pendo-launcher_');
     var displaying = '_pendo-launcher-search--is-displaying_';
     var entering = '_pendo-launcher-view--is-entering_';
     var active = '_pendo-launcher-view--is-active_';
     var exiting = '_pendo-launcher-view--is-exiting_';
     var openClass = '_pendo-launcher-accordion-open_';
-    var progressBar = '_pendo-launcher-onboarding-progress-bar-completed_';
-    var progressBarLabel = '_pendo-launcher-onboarding-progress-bar-label_ > span';
     var guideStatus = launcher.guideStatus;
     var activationElement;
 
-    if (launcher.data && launcher.data.launchType === 'element' && launcher.data.launchElement) {
+    if (
+        launcher.data &&
+        launcher.data.launchType === 'element' &&
+        launcher.data.launchElement
+    ) {
         activationElement = dom(launcher.data.launchElement);
     } else {
         activationElement = dom('._pendo-launcher-badge_');
@@ -38,7 +57,9 @@
     if (pendo.designer) {
         dom('.' + active).removeClass(active);
         dom('._pendo-launcher-main_').toggleClass(active);
-        dom('._pendo-launcher-menu-item_').css({ display: 'block' });
+        dom('._pendo-launcher-menu-item_').css({
+            display: 'block'
+        });
     }
 
     launcher.guideStatus = function (guide) {
@@ -49,81 +70,149 @@
     };
 
     launcher.guideProgress = function (guide) {
-        var progress = guide.getSeenSteps() / guide.getTotalSteps() * 100;
+        var progress = (guide.getSeenSteps() / guide.getTotalSteps()) * 100;
         return (100 - progress) * 6.29;
     };
 
     launcher.formatDate = formatDate;
     launcher.after('update', updateBadge);
+    launcher.after('update', function () {
+        _.each(moduleAccordions, function (section) {
+            updateEmptySectionState(section);
+        });
+    });
     launcher.after('updateLauncherContent', updateEmptyState);
-    launcher.after('updateLauncherContent', updateOnboardingProgress);
+    launcher.after('updateLauncherContent', function () {
+        _.each(moduleAccordions, function (bar) {
+            updateOnboardingProgress(bar);
+        });
+    });
     launcher.after('updateLauncherContent', backToSearchResults);
 
     launcherDiv
         .on('click', '._pendo-launcher-accordion_ > button', function (e) {
-            var accordion = dom(eventTarget(e)).closest('._pendo-launcher-accordion_');
+            var accordion = dom(eventTarget(e)).closest(
+                '._pendo-launcher-accordion_'
+            );
             // Note: if you have nested accordions and resuse the '_pendo-launcher-accordion-open_'
             // class it will close all open nested accordions as well
             var openAccordion = dom('._pendo-launcher_ .' + openClass);
 
-            dom('._pendo-launcher_ ._pendo-launcher-guide-listing_').css({ height: 0 });
+            dom(
+                '._pendo-launcher_ [data-id="onboarding"] ._pendo-launcher-guide-listing_'
+            ).css({
+                height: 0
+            });
 
-            if (openAccordion && (openAccordion[0] !== accordion[0])) {
+            if (openAccordion && openAccordion[0] !== accordion[0]) {
                 openAccordion.toggleClass(openClass);
             }
 
             accordion.toggleClass(openClass);
 
             if (accordion.hasClass(openClass)) {
-                var used = pendo.dom('[data-id="onboarding"] ._pendo-launcher-section-header_').height() +
-                    pendo.dom('[data-id="onboarding"] ._pendo-launcher-section-body_').height();
-                var launcherContent = pendo.dom('[data-id="onboarding"]._pendo-launcher-section-content_');
-                var launcherContentStyle = dom.getComputedStyle(launcherContent[0]);
-                if (launcherContentStyle && launcherContentStyle.borderTopWidth) {
-                    var borderTopWidth = parseInt(launcherContentStyle.borderTopWidth.replace(/\D+/g, ''), 10);
+                var used =
+                    pendo
+                        .dom(
+                            '[data-id="onboarding"] ._pendo-launcher-section-header_'
+                        )
+                        .height() +
+                    pendo
+                        .dom(
+                            '[data-id="onboarding"] ._pendo-launcher-section-body_'
+                        )
+                        .height();
+                var launcherContent = pendo.dom(
+                    '[data-id="onboarding"]._pendo-launcher-section-content_'
+                );
+                var launcherContentStyle = dom.getComputedStyle(
+                    launcherContent[0]
+                );
+                if (
+                    launcherContentStyle &&
+                    launcherContentStyle.borderTopWidth
+                ) {
+                    var borderTopWidth = parseInt(
+                        launcherContentStyle.borderTopWidth.replace(/\D+/g, ''),
+                        10
+                    );
                     if (!isNaN(borderTopWidth)) {
                         used += borderTopWidth; // Offset by the content's top border
                     }
                 }
                 var newHeight = launcherContent.height() - used;
-                accordion.find('._pendo-launcher-guide-listing_').css({ height: newHeight });
+                accordion
+                    .find('._pendo-launcher-guide-listing_')
+                    .css({
+                        height: newHeight
+                    });
             }
         })
-        .on('click', '._pendo-launcher-menu-item-button_, ._pendo-launcher-section-back-button_', function (e) {
-            var target = dom(eventTarget(e)).closest('[data-id]');
-            if (target && target.length) {
-                target = target.attr('data-id');
-                handleAnimations(dom('._pendo-launcher-main_, ._pendo-launcher-body_'));
-                dom(this)
-                    .find('[data-id="' + target + '"]')
-                    .toggleClass(active);
+        .on(
+            'click',
+            '._pendo-launcher-menu-item-button_, ._pendo-launcher-section-back-button_',
+            function (e) {
+                var target = dom(eventTarget(e)).closest('[data-id]');
+                if (target && target.length) {
+                    target = target.attr('data-id');
+                    handleAnimations(
+                        dom('._pendo-launcher-main_, ._pendo-launcher-body_')
+                    );
+                    dom(this)
+                        .find('[data-id="' + target + '"]')
+                        .toggleClass(active);
+                }
             }
-        })
-        .on('click', '._pendo-launcher-clear-search-icon_, ._pendo-launcher-clear-search_', function () {
-            launcher.data.search.clear();
-        })
-        .on('click', '._pendo-launcher-search-results_ ._pendo-launcher-whatsnew-item_ > a', function (e) {
-            var item = dom(eventTarget(e)).closest('._pendo-launcher-item_');
-            var id = item.attr('id');
-            var step = findStepByGuideId(id);
-            if (!step) return;
-            dom('._pendo-launcher-search-results_').addClass(displaying);
-            dom('._pendo-launcher-search-display_ h4').html(launcher.data.whatsnew.title + ' > ' + step.guide.name);
-            dom('<div class="_pendo-launcher-item_" id="launcher-' + id + '" data-id="' + id + '"></div>').appendTo('._pendo-launcher-search-display_');
-            step.guideElement.remove();
-            step.guide.addToLauncher();
-            highlightTermsInGuideContent(step.guideElement[0]);
-        })
-        .on('click', '._pendo-launcher-search-results_ ._pendo-launcher-search-return_', function () {
-            var placeholder = dom('._pendo-launcher-search-display_').find('[data-id]');
-            backToSearchResults();
-            var step = findStepByGuideId(placeholder.attr('data-id'));
-            if (!step) return;
-            placeholder.remove();
-            step.guideElement.html('').remove();
-            step.render();
-            step.guide.addToLauncher();
-        });
+        )
+        .on(
+            'click',
+            '._pendo-launcher-clear-search-icon_, ._pendo-launcher-clear-search_',
+            function () {
+                launcher.data.search.clear();
+            }
+        )
+        .on(
+            'click',
+            '._pendo-launcher-search-results_ ._pendo-launcher-whatsnew-item_ > a',
+            function (e) {
+                var item = dom(eventTarget(e)).closest(
+                    '._pendo-launcher-item_'
+                );
+                var id = item.attr('id');
+                var step = findStepByGuideId(id);
+                if (!step) return;
+                dom('._pendo-launcher-search-results_').addClass(displaying);
+                dom('._pendo-launcher-search-display_ h4').html(
+                    launcher.data.whatsnew.title + ' > ' + step.guide.name
+                );
+                dom(
+                    '<div class="_pendo-launcher-item_" id="launcher-' +
+                    id +
+                    '" data-id="' +
+                    id +
+                    '"></div>'
+                ).appendTo('._pendo-launcher-search-display_');
+                step.guideElement.remove();
+                step.guide.addToLauncher();
+                highlightTermsInGuideContent(step.guideElement[0]);
+            }
+        )
+        .on(
+            'click',
+            '._pendo-launcher-search-results_ ._pendo-launcher-search-return_',
+            function () {
+                var placeholder = dom('._pendo-launcher-search-display_').find(
+                    '[data-id]'
+                );
+                backToSearchResults();
+                var step = findStepByGuideId(placeholder.attr('data-id'));
+                if (!step) return;
+                placeholder.remove();
+                step.guideElement.html('').remove();
+                step.render();
+                step.guide.addToLauncher();
+            }
+        );
 
     function handleAnimations (elements) {
         return pendo._.each(elements, function (elem) {
@@ -159,8 +248,14 @@
     function highlightTermsInGuideContent (guideElement) {
         if (!guideElement || !launcher.data.search || !launcher.data.search.text) return;
         var regex = new RegExp(launcher.data.search.text, 'gi');
-        guideElement.innerHTML = guideElement.innerHTML.replace(regex, function (match) {
-            return '<span class="_pendo-launcher-search-highlight_">' + match + '</span>';
+        guideElement.innerHTML = guideElement.innerHTML.replace(regex, function (
+            match
+        ) {
+            return (
+                '<span class="_pendo-launcher-search-highlight_">' +
+                match +
+                '</span>'
+            );
         });
     }
 
@@ -170,7 +265,20 @@
     }
 
     function formatDate (date) {
-        var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        var months = [
+            'Jan',
+            'Feb',
+            'Mar',
+            'Apr',
+            'May',
+            'Jun',
+            'Jul',
+            'Aug',
+            'Sep',
+            'Oct',
+            'Nov',
+            'Dec'
+        ];
         if (!date) {
             return;
         }
@@ -205,22 +313,123 @@
         if (pendo.designer) return;
 
         return pendo._.chain(pendo.guides)
-            .filter(function (guide) { return guide.shouldBeAddedToLauncher(); })
+            .filter(function (guide) {
+                return guide.shouldBeAddedToLauncher();
+            })
             .groupBy(function (guide) {
                 if (guide.isHelpGuide()) return 'knowledgebase';
                 if (guide.isOnboarding()) return 'onboarding';
                 if (guide.isWhatsNew()) return 'whatsnew';
             })
             .map(function (value, key) {
-                return dom('._pendo-launcher_ ._pendo-launcher-menu-item_[data-id="' + key + '"]').css({ display: 'block' });
+                return dom(
+                    '._pendo-launcher_ ._pendo-launcher-menu-item_[data-id="' +
+                    key +
+                    '"]'
+                ).css({
+                    display: 'block'
+                });
             });
     }
 
-    function updateOnboardingProgress () {
-        if (launcher.onboarding && launcher.onboarding.percentComplete) {
-            var percentComplete = launcher.onboarding.percentComplete;
-            dom('.' + progressBar).css({ width: percentComplete + '%' });
-            dom('.' + progressBarLabel).html(percentComplete);
+    function updateEmptySectionState (onboardingSection) {
+        if (pendo.designer) return;
+
+        if (pendo._.isEmpty(pendo.pro.onboardingGuides[onboardingSection].guides)) {
+            return dom('[data-id="' + onboardingSection + '"]').css({display: 'none'});
+        };
+    }
+
+    function updateOnboardingProgress (progressBar) {
+        var progressBarName = progressBar;
+        var progressObjectToUpdate = pendo.pro.onboardingGuides[progressBarName];
+        if (progressObjectToUpdate && progressObjectToUpdate.guides) {
+            var guideObjectsForProgressUpdate = _.compact(_.map(progressObjectToUpdate.guides, function (guide) {
+                return pendo.findGuideById(guide);
+            }));
+        }
+        var progressBarStats = getGuideStatistics(guideObjectsForProgressUpdate);
+        var progressBarElement = pendo.dom('[data-id="' + progressBar + '-progress"]');
+        var progressBarLabel = pendo.dom('[data-id="' + progressBar + '-progress-label"] > span');
+        if (launcher.onboarding && progressBarStats.percentComplete >= 0) {
+            dom(progressBarElement).css({ width: progressBarStats.percentComplete + '%' });
+            dom(progressBarLabel).html(progressBarStats.percentComplete);
         }
     }
-})(pendo.dom, pendo.guideWidget);
+
+    var isGuideComplete = function (guide) {
+        var lastStep = _.last(guide.steps);
+
+        // is the last step a lightbox?  if so, this is the
+        // congratulations step and we should instead check the 2nd to
+        // last step
+
+        if (guide.steps.length > 1 && lastStep.type === 'lightbox') {
+            lastStep = _.last(guide.steps, 2)[0];
+        }
+
+        return (
+            lastStep.seenState === 'advanced' ||
+            lastStep.seenState === 'dismissed'
+        );
+    };
+
+    var isGuideSkipped = function (guide) {
+        return false;
+    };
+
+    var isGuideInProgress = function (guide) {
+        var seenStates = _.pluck(guide.steps, 'seenState');
+        var isActive = _.any(seenStates, function (s) {
+            return s === 'active';
+        });
+        if (isActive) return true;
+
+        // steps can be advanced and then followed by undefined(s)
+        return _.size(_.uniq(seenStates)) === 2;
+    };
+
+    var isGuideNotStarted = function (guide) {
+        if (
+            _.any(_.initial(_.pluck(guide.steps, 'seenState')), function (s) {
+                return s === 'dismissed';
+            })
+        ) {
+            return true;
+        }
+
+        return _.all(_.pluck(guide.steps, 'seenState'), function (s) {
+            return typeof s === 'undefined';
+        });
+    };
+
+    var getGuideStatistics = function (guides) {
+        var completed = _.filter(guides, isGuideComplete);
+        var skipped = _.filter(
+            _.without.apply(_, [guides].concat(completed)),
+            isGuideSkipped
+        );
+        var inProgress = _.filter(
+            _.without.apply(_, [guides].concat(completed, skipped)),
+            isGuideInProgress
+        );
+        var notStarted = _.filter(
+            _.without.apply(_, [guides].concat(completed, skipped, inProgress)),
+            isGuideNotStarted
+        );
+
+        var stats = {
+            total: guides.length,
+            isCompleted: guides.length === completed.length + skipped.length,
+            percentComplete: Math.round(
+                ((completed.length + skipped.length) / guides.length) * 100
+            ),
+            completed: completed,
+            skipped: skipped,
+            inProgress: inProgress,
+            notStarted: notStarted
+        };
+
+        return stats;
+    };
+})(pendo.dom, pendo.guideWidget, pendo._);
